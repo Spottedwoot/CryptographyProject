@@ -154,8 +154,8 @@ function encrypt() {
 
 function decryption() {
     event.preventDefault()
-    let p1 = document.getElementById("p1").value;
-    let p2 = document.getElementById("p2").value;
+    let p1 = BigInt(document.getElementById("p1").value);
+    let p2 = BigInt(document.getElementById("p2").value);
     let encryptedmessage = document.getElementById("encryptedmessage").value;
     let newMessage = messageToBigInt(encryptedmessage);
     document.getElementById("decrpyted").innerHTML=newMessage;
