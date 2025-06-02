@@ -158,7 +158,7 @@ function decryption() {
     let p2 = document.getElementById("p2").value;
     let encryptedmessage = document.getElementById("encryptedmessage").value;
     let newMessage = messageToBigInt(encryptedmessage);
+    document.getElementById("decrpyted").innerHTML=newMessage;
     let decrypted = decrypt(newMessage, p1, p2);
     let output = bigIntToMessage(decrypted);
-    document.getElementById("decrpyted").innerHTML=output;
 }
