@@ -142,7 +142,7 @@ function messageToBigInt(message){
 
 function encrypt() {
   event.preventDefault()
-    let prodofprimes = document.getElementById("prodofprimes").value;
+    let prodofprimes = BigInt(document.getElementById("prodofprimes").value);
     let message = document.getElementById("message").value;
     let newMessage = messageToBigInt(message);
     let encrypted = RSAencrypt(newMessage, prodofprimes);
