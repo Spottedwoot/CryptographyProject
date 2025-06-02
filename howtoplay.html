@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- 
+      This is an HTML comment
+      You can write text in a comment and the content won't be visible in the page
+    -->
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="https://glitch.com/favicon.ico" />
+
+    <!--
+      This is the page head - it contains info the browser uses
+      Like the title, which appears on the browser tab but not inside the page
+      Further down you'll see the content that displays in the page
+    -->
+    <title>Dado TV</title>
+
+    <!-- The website stylesheet -->
+    <link rel="stylesheet" href="/style.css" />
+
+    <!-- The website JavaScript file -->
+    <script src="/script.js" defer></script>
+  </head>
+  <body>
+    <!--
+      The body includes the content you see in the page
+      Each element is defined using tags, like this <div></div>
+      The attributes like class="wrapper" let us style elements in the CSS
+    -->
+    <ul>
+  <li><a href="index.html">Home</a></li>
+  <li><a href="encryption.html">Encryption</a></li>
+  <li><a href="decryption.html">Decryption</a></li>
+  <li><a href="sandbox.html">Sandbox</a></li>
+  <li><a href="howtoplay.html">How To Play</a></li>
+</ul>
+    <div class="wrapper">
+      <div class="content" role="main">
+        <h2 class="title">How To Play and the Math Behind Encryption</h2>
+        <div class="instructions">
+          <h2>How To Play</h2>
+          <p>
+            The encryption game has 2 main portions: encryption and decryption. 
+            The purpose of the game is to show you why encryption works by displaying 
+            the reason why it is hard to break an encryption, but not hard if you know 
+            the key. Modern encryption uses the fact that it is significantly easier to take the 
+            product of two primes then to find the 2 unique prime factors of a large number. So in 
+            the encryption portion of the game you will be given 2 primes and need to find (p-1)(q-1), which
+            is the value that is used to decrypt text. For the decryption you will be given a number that 
+            factors into two prime numbers p and q and will need to find (p-1)(q-1). You will find that the
+            decryption is significantly harder than the encryption. In the sandbox you will be able to type in whatever text you want
+            and encrypt it and then take the encrypted text and decrypt it. Have fun!
+          </p>
+          
+          <h2>How Encryption Works</h2>
+          <p> The way encryption works is it starts with two people. Let's call them Alice and Bob. Alice and Bob want
+            to communicate and so they both choose 2 large primes each p<sub>A</sub> and q<sub>A</sub> for Alice and p<sub>B</sub> and q<sub>B</sub> for Bob and keep them secret. Then they will both choose a number e<sub>A</sub> for Alice,
+            and e<sub>B</sub> for Bob. Then Alice will publish N<sub>A</sub>=p<sub>A</sub>q<sub>A</sub> and e<sub>A</sub> while Bob will publish N<sub>B</sub>=p<sub>B</sub>q<sub>B</sub> and e<sub>B</sub>. Now let's say Alice wants to send a message to Bob. Alice
+            will first convert her message to Bob to a number, m. She will then compute the remainder of m<sup>e<sub>B</sub></sup> when divided by N<sub>B</sub>. This may seem like a daunting task given that calculating powers of a number is hard 
+            but in practice there are many tricks to calculate this remainder fast so that when a computer does it, it becomes about as hard as calculating m<sup>k</sup> where k is about log<sub>2</sub>(e<sub>B</sub>). This means that even for relatively big e<sub>B</sub> calculating 
+            this remainder doesn't get too bad. Now Alice will send that remainder, c, to Bob. Then Bob will find a d such that when he divides d*e<sub>B</sub> by (p<sub>B</sub>-1)(q<sub>B</sub>-1) he gets a remainder of 1. This while also looking hard to solve, is not very difficult for
+            a computer to do. Finally Bob will compute the remainder of c<sup>d</sup> when divided by N<sub>B</sub> and that will get him back the original m. This fact is not obvious and takes some effort to prove but that is outside of the scope of this game.
+          
+          </p>
+          
+          <h2>The Math</h2>
+          <p>
+          At the heart of this process is the idea of a congruence. A congruence is an equation of the form a ≅ b (mod n). What this is saying is that when you divide a by n and b by n you get the same remainder. Congruences are fun to work with because
+          they behave very nicely. Like regular equations you can add, subtract, and multiply on both sides, but be careful about division because divsion only works if the number you are dividing by and n don't share any factors. Something nice about congruences is that if you
+          have a ≅ b (mod n) then a*a ≅ b*b (mod n). This is why taking the remainder of m<sup>e<sub>B</sub></sup> divided by N<sub>B</sub> is not that bad because you only have to care about the remainder after each step of the computation. Another one of the main theorems about congruences
+            that is very important in the proof that Bob actually gets back the message is Fermat's Little Theorem. This says that a<sup>p-1</sup> ≅ 1 (mod p) if p is prime. This is, at least in my opinion, an unituitive result that you would have never thought of if you only thought of remainders in division
+          rather than fully considering congruences. Congruences are used all over number theory
+          and are able to be used to show facts that you might think have very little to do with them. As you have read about previously, in the real world congruences are mostly just used in cryptography. The algorithm described above is just one of many and a lot of the encryption algoritms use
+          congruences in some way.
+          </p>
+          <!--  🚧 TODO: ADD BUTTON HERE -->
+
+          <!-- Once you've added the button from TODO.md, click it in the page -->
+          <!-- Check out the function in script.js to see how it works -->
+        </div>
+      </div>
+    </div>
+    <!-- The footer holds our remix button — you can keep or delete it ✂ -->
+  </body>
+</html>
