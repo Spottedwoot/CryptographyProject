@@ -141,7 +141,7 @@ function messageToBigInt(message){
 
 
 
-
+document.getElementById("encrypted").innerHTML="hi";
 function encrypt() {
   event.preventDefault()
     let prodofprimes = document.getElementById("prodofprimes").value;
